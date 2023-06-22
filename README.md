@@ -12,14 +12,6 @@
 <h1 align="center">Carrinho de compras (Front-end) </h1>
 <h4 align="center">Telas de uma aplicação web que consome dados de uma api externa</h4>
 
-## ScreenShots
-<p align="center">
-        <img src="https://github.com/lucasfullstackdev/quikdev-front/blob/develop/public/screenshots/screen-shot-1.png" width="900">
-        <img src="https://github.com/lucasfullstackdev/quikdev-front/blob/develop/public/screenshots/screen-shot-2.png" width="900">
-        <img src="https://github.com/lucasfullstackdev/quikdev-front/blob/develop/public/screenshots/screen-shot-3.png" width="1000">
-</p>
-
-
 ## Sobre o projeto
 Este projeto tem como finalidade atestar meus conhecimentos no framework 
  [vuejs](https://vuejs.org/), englobando ciclo de vida, requisições http usando o [axios](https://github.com/axios/axios), o sistema de rotas utilizando o [vue-router](https://router.vuejs.org/), além de componentização e a correta implementação de reatividade.
