@@ -2,7 +2,9 @@
   <h1>Lista de Produtos</h1>
   <CheckList
     @itemClicked="itemSelecionado"
+    @removeItemFromOrder="removerItem"
     v-bind:selectedItems="selectedItems"
+    v-bind:countItems="countItems"
     v-bind:items="items"
   />
 
@@ -24,6 +26,8 @@ export default {
   data() {
     return {
       selectedItems: [],
+      countItems: {},
+      countItemsAux: {},
       items: [],
     };
   },
@@ -45,16 +49,26 @@ export default {
   methods: {
     async sendOrder(orderData) {
       await shoppingService.registerOrder(orderData);
-      
+      this.$swal.fire("Sucesso!", "Seu pedido será processado!", "success");
     },
     itemSelecionado(product) {
-      if (this.selectedItems.includes(product.id)) {
-        this.selectedItems = this.selectedItems.filter(
-          (item) => item.id !== product.id
-        );
-      } else {
-        this.selectedItems.push(product);
-      }
+      this.selectedItems.push(product);
+
+      /** Realizando a contagem */
+      this.countItemsAux[product.id] =
+        (this.countItemsAux[product.id] || 0) + 1;
+      this.countItems[product.id] = {
+        count: this.countItemsAux[product.id],
+        id: product.id,
+        name: product.name,
+      };
+    },
+    removerItem(productId) {
+      this.selectedItems = this.selectedItems.filter(
+        (item) => item.id !== productId
+      );
+      delete this.countItems[productId];
+      delete this.countItemsAux[productId];
     },
     closeOrder() {
       this.$emit("signUp");
@@ -62,7 +76,6 @@ export default {
   },
   async created() {
     this.items = await productService.listAll();
-    this.$swal.fire("Sucesso!", "Seu pedido será processado!", "success");
   },
 };
 </script>
