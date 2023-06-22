@@ -45,7 +45,7 @@ export default {
   methods: {
     async sendOrder(orderData) {
       await shoppingService.registerOrder(orderData);
-      
+      this.$swal.fire("Sucesso!", "Seu pedido será processado!", "success");
     },
     itemSelecionado(product) {
       if (this.selectedItems.includes(product.id)) {
@@ -62,7 +62,6 @@ export default {
   },
   async created() {
     this.items = await productService.listAll();
-    this.$swal.fire("Sucesso!", "Seu pedido será processado!", "success");
   },
 };
 </script>
